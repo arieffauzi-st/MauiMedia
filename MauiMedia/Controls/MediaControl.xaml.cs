@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MauiMedia.Messages;
 using MauiMedia.Services;
+using System.ComponentModel;
 
 namespace MauiMedia.Controls;
 

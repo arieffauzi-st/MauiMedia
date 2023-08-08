@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 
 namespace MauiMedia.Model;
 public partial class Shared : ObservableObject

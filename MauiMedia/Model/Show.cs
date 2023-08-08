@@ -2,17 +2,18 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
 
-namespace MauiMedia.Model;
+namespace NerdNewsNavigator2.Model;
 
 /// <summary>
-/// A class for storing <see cref="Podcast"/> in a Database.
+/// <c>Show</c> is a Class for storing Shows
 /// </summary>
-[Table("Podcasts")]
-public partial class Podcast : Shared
+[Table("AllShows")]
+public partial class Show : Shared
 {
     [ObservableProperty]
-    private bool _deleted;
+    private bool _isDownloading;
+    [ObservableProperty]
+    private string _status;
 }

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using Maui.BindableProperty.Generator.Core;
 
 namespace MauiMedia.ViewModel;
@@ -116,129 +117,129 @@ public partial class BaseViewModel : ObservableObject
         }
     }
 
-    #region Download Tasks
+    //#region Download Tasks
 
-    public Show GetShowForDownload(string url)
-    {
-        if (Shows.ToList().Exists(x => x.Url == url))
-        {
-            var showItem = Shows.ToList().Find(x => x.Url == url);
-            return showItem;
-        }
-        else if (MostRecentShows.ToList().Exists(x => x.Url == url))
-        {
-            var showItem = MostRecentShows.ToList().Find(x => x.Url == url);
-            return showItem;
-        }
-        return new Show();
-    }
-    #endregion
+    //public Show GetShowForDownload(string url)
+    //{
+    //    if (Shows.ToList().Exists(x => x.Url == url))
+    //    {
+    //        var showItem = Shows.ToList().Find(x => x.Url == url);
+    //        return showItem;
+    //    }
+    //    else if (MostRecentShows.ToList().Exists(x => x.Url == url))
+    //    {
+    //        var showItem = MostRecentShows.ToList().Find(x => x.Url == url);
+    //        return showItem;
+    //    }
+    //    return new Show();
+    //}
+    //#endregion
 
-    #region Podcast data functions
+    //#region Podcast data functions
 
-    /// <summary>
-    /// Method gets the <see cref="ObservableCollection{T}"/> of <see cref="Show"/> from the database.
-    /// </summary>
-    public async Task GetFavoriteShows()
-    {
-        FavoriteShows.Clear();
-        var temp = await App.PositionData.GetAllFavorites();
-        temp?.ForEach(FavoriteShows.Add);
-        _logger.Info("Got all Favorite Shows");
-    }
+    ///// <summary>
+    ///// Method gets the <see cref="ObservableCollection{T}"/> of <see cref="Show"/> from the database.
+    ///// </summary>
+    //public async Task GetFavoriteShows()
+    //{
+    //    FavoriteShows.Clear();
+    //    var temp = await App.PositionData.GetAllFavorites();
+    //    temp?.ForEach(FavoriteShows.Add);
+    //    _logger.Info("Got all Favorite Shows");
+    //}
 
-    /// <summary>
-    /// A method that sets <see cref="DownloadedShows"/> from the database.
-    /// </summary>
-    public async Task GetDownloadedShows()
-    {
-        DownloadedShows.Clear();
-        var temp = await App.PositionData.GetAllDownloads();
-        temp.Where(x => x.IsDownloaded).ToList().ForEach(DownloadedShows.Add);
-        _logger.Info("Add all downloads to All Shows list");
-    }
-    public static List<Show> RemoveDuplicates(List<Show> items)
-    {
-        List<Show> result = new();
-        for (var i = 0; i < items.Count; i++)
-        {
-            var duplicate = false;
-            for (var z = 0; z < i; z++)
-            {
-                if (items[z].Url == items[i].Url)
-                {
-                    duplicate = true;
-                    break;
-                }
-            }
-            if (!duplicate)
-            {
-                result.Add(items[i]);
-            }
-        }
-        return result;
-    }
-    #endregion
+    ///// <summary>
+    ///// A method that sets <see cref="DownloadedShows"/> from the database.
+    ///// </summary>
+    //public async Task GetDownloadedShows()
+    //{
+    //    DownloadedShows.Clear();
+    //    var temp = await App.PositionData.GetAllDownloads();
+    //    temp.Where(x => x.IsDownloaded).ToList().ForEach(DownloadedShows.Add);
+    //    _logger.Info("Add all downloads to All Shows list");
+    //}
+    //public static List<Show> RemoveDuplicates(List<Show> items)
+    //{
+    //    List<Show> result = new();
+    //    for (var i = 0; i < items.Count; i++)
+    //    {
+    //        var duplicate = false;
+    //        for (var z = 0; z < i; z++)
+    //        {
+    //            if (items[z].Url == items[i].Url)
+    //            {
+    //                duplicate = true;
+    //                break;
+    //            }
+    //        }
+    //        if (!duplicate)
+    //        {
+    //            result.Add(items[i]);
+    //        }
+    //    }
+    //    return result;
+    //}
+    //#endregion
 
     #region Update Podcasts
     /// <summary>
     /// <c>GetUpdatedPodcasts</c> is a <see cref="Task"/> that sets <see cref="Podcasts"/> from either a Database or from the web.
     /// </summary>
     /// <returns></returns>
-    public async Task GetUpdatedPodcasts()
-    {
-        if (Podcasts.Count > 0)
-        {
-            return;
-        }
-        var updates = await UpdateCheckAsync();
-        var temp = await App.PositionData.GetAllPodcasts();
-        if (!updates && temp.Count == 0)
-        {
-            await ProcessPodcasts();
-        }
-        else
-        {
-            var item = temp.OrderBy(x => x.Title).ToList();
-            item?.Where(x => !x.Deleted).ToList().ForEach(Podcasts.Add);
-        }
-    }
-    private async Task ProcessPodcasts()
-    {
-        var res = await PodcastServices.UpdatePodcast();
-        Podcasts.Clear();
-        // sort podcast alphabetically
-        var orderPodcast = res.OrderBy(x => x.Title).ToList();
+    //public async Task GetUpdatedPodcasts()
+    //{
+    //    if (Podcasts.Count > 0)
+    //    {
+    //        return;
+    //    }
+    //    var updates = await UpdateCheckAsync();
+    //    var temp = await App.PositionData.GetAllPodcasts();
+    //    if (!updates && temp.Count == 0)
+    //    {
+    //        await ProcessPodcasts();
+    //    }
+    //    else
+    //    {
+    //        var item = temp.OrderBy(x => x.Title).ToList();
+    //        item?.Where(x => !x.Deleted).ToList().ForEach(Podcasts.Add);
+    //    }
+    //}
+    //private async Task ProcessPodcasts()
+    //{
+    //    var res = await PodcastServices.UpdatePodcast();
+    //    Podcasts.Clear();
+    //    // sort podcast alphabetically
+    //    var orderPodcast = res.OrderBy(x => x.Title).ToList();
 
-        orderPodcast.ForEach(Podcasts.Add);
-    }
-    private async Task<bool> UpdateCheckAsync()
-    {
-        var currentdate = DateTime.Now;
-        var oldDate = Preferences.Default.Get("OldDate", DateTime.Now);
-        _logger.Info($"Total day since last Update check for new Podcasts: {(currentdate - oldDate).Days}");
-        if ((currentdate - oldDate).Days <= 0)
-        {
-            Preferences.Default.Set("OldDate", DateTime.Now);
-            _logger.Info("Setting current date as Last Update Check");
-            return false;
-        }
-        if ((oldDate - currentdate).Days > 30)
-        {
-            _logger.Info("Last Update Check is over 30 days ago. Updating now.");
-            Preferences.Default.Remove("OldDate");
-            Preferences.Default.Set("OldDate", currentdate);
-            var res = await PodcastServices.UpdatePodcast();
-            Podcasts.Clear();
-            var item = res.OrderBy(x => x.Title).ToList();
-            item.ForEach(Podcasts.Add);
-            var fav = await PodcastServices.UpdateFavoritesAsync();
-            FavoriteShows.Clear();
-            fav.ForEach(FavoriteShows.Add);
-            return true;
-        }
-        return false;
-    }
+    //    orderPodcast.ForEach(Podcasts.Add);
+    //}
+    //private async Task<bool> UpdateCheckAsync()
+    //{
+    //    var currentdate = DateTime.Now;
+    //    var oldDate = Preferences.Default.Get("OldDate", DateTime.Now);
+    //    _logger.Info($"Total day since last Update check for new Podcasts: {(currentdate - oldDate).Days}");
+    //    if ((currentdate - oldDate).Days <= 0)
+    //    {
+    //        Preferences.Default.Set("OldDate", DateTime.Now);
+    //        _logger.Info("Setting current date as Last Update Check");
+    //        return false;
+    //    }
+    //    if ((oldDate - currentdate).Days > 30)
+    //    {
+    //        _logger.Info("Last Update Check is over 30 days ago. Updating now.");
+    //        Preferences.Default.Remove("OldDate");
+    //        Preferences.Default.Set("OldDate", currentdate);
+    //        var res = await PodcastServices.UpdatePodcast();
+    //        Podcasts.Clear();
+    //        var item = res.OrderBy(x => x.Title).ToList();
+    //        item.ForEach(Podcasts.Add);
+    //        var fav = await PodcastServices.UpdateFavoritesAsync();
+    //        FavoriteShows.Clear();
+    //        fav.ForEach(FavoriteShows.Add);
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
     #endregion
 

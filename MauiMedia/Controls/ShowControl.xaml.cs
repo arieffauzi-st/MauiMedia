@@ -3,6 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using Maui.BindableProperty.Generator.Core;
+using MauiMedia.Model;
+using MauiMedia.Services;
+using System.Collections.ObjectModel;
+
 
 namespace MauiMedia.Controls;
 
