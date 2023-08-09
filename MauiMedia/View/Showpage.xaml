@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiMedia.View.ShowPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:media="clr-namespace:MauiMedia.Controls"
+    xmlns:model="clr-namespace:MauiMedia.Model"
+    xmlns:viewmodel="clr-namespace:MauiMedia.ViewModel"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:ShowViewModel"
+    BackgroundColor="#34AAD2"
+    Loaded="ContentPage_Loaded"
+    Shell.BackgroundColor="#34AAD2">
+    <Grid>
+        <RefreshView Command="{Binding PullToRefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <media:ShowControl x:Name="showControl" Source="{Binding Shows}" />
+        </RefreshView>
+    </Grid>
+</ContentPage>

@@ -4,6 +4,10 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using Maui.BindableProperty.Generator.Core;
+using MauiMedia.Model;
+using MauiMedia.Services;
+using MetroLog;
+using System.Collections.ObjectModel;
 
 namespace MauiMedia.ViewModel;
 
@@ -16,7 +20,7 @@ public partial class BaseViewModel : ObservableObject
     /// <summary>
     /// An <see cref="ObservableCollection{T}"/> of <see cref="Show"/> managed by this class.
     /// </summary>
-    public ObservableCollection<Favorites> FavoriteShows { get; set; } = new();
+    //public ObservableCollection<Favorites> FavoriteShows { get; set; } = new();
 
     /// <summary>
     /// An <see cref="ObservableCollection{T}"/> of <see cref="Show"/> managed by this class.
@@ -33,8 +37,8 @@ public partial class BaseViewModel : ObservableObject
     /// <summary>
     /// An <see cref="ObservableCollection{T}"/> of downloaded <see cref="Download"/> managed by this class.
     /// </summary>
-    [ObservableProperty]
-    private ObservableCollection<Download> _downloadedShows;
+    //[ObservableProperty]
+    //private ObservableCollection<Download> _downloadedShows;
 
     /// <summary>
     /// An <see cref="ObservableCollection{T}"/> of <see cref="Podcast"/> managed by this class.
@@ -92,11 +96,11 @@ public partial class BaseViewModel : ObservableObject
     {
         _connectivity = connectivity;
         _shows = new();
-        _downloadProgress = string.Empty;
-        _downloadedShows = new();
+        //_downloadProgress = string.Empty;
+        //_downloadedShows = new();
         _mostRecentShows = new();
-        ThreadPool.QueueUserWorkItem(async (state) => await GetDownloadedShows());
-        ThreadPool.QueueUserWorkItem(async (state) => await GetFavoriteShows());
+        //ThreadPool.QueueUserWorkItem(async (state) => await GetDownloadedShows());
+        //ThreadPool.QueueUserWorkItem(async (state) => await GetFavoriteShows());
     }
 
     /// <summary>

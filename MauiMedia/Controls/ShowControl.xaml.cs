@@ -6,6 +6,11 @@ using Maui.BindableProperty.Generator.Core;
 using MauiMedia.Model;
 using MauiMedia.Services;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using CommunityToolkit.Maui.Core.Primitives;
+using CommunityToolkit.Maui.Views;
+using Microsoft.Extensions.Logging;
+using CommunityToolkit.Mvvm.Messaging;
 
 
 namespace MauiMedia.Controls;

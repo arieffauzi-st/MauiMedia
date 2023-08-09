@@ -55,12 +55,14 @@
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="M.BindableProperty.Generator" Version="0.11.1" />
+		<PackageReference Include="M3U8Parser" Version="1.0.1" />
 		<PackageReference Include="MetroLog.Maui" Version="2.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
 		<PackageReference Include="SQLitePCLRaw.core" Version="2.1.5" />
 		<PackageReference Include="Woka" Version="1.0.11" />
+		<PackageReference Include="YoutubeExplode" Version="6.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -68,6 +70,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\ShowControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\PodcastPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Showpage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\VideoPlayerPage.xaml">

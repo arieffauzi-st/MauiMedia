@@ -59,7 +59,7 @@
                 VerticalOptions="Start"
                 WidthRequest="48" />
 
-            <CollectionView
+            <!--<CollectionView
                 Margin="80"
                 HeightRequest="240"
                 HorizontalOptions="End"
@@ -98,7 +98,7 @@
                         </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
 
             <VerticalStackLayout Margin="{OnIdiom Default=35, Phone=5}" VerticalOptions="{OnPlatform WinUI=End, MacCatalyst=End, Default=Center}">
                 <HorizontalStackLayout HorizontalOptions="Center">

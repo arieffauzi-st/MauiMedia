@@ -10,6 +10,7 @@ using MauiMedia.Messages;
 using MauiMedia.Services;
 using System.ComponentModel;
 
+
 namespace MauiMedia.Controls;
 
 public partial class MediaControl : ContentView

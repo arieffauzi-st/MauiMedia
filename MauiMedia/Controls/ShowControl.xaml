@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="NerdNewsNavigator2.Controls.ShowControl"
+    x:Class="MauiMedia.Controls.ShowControl"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
-    xmlns:item="clr-namespace:NerdNewsNavigator2.Controls"
+    xmlns:item="clr-namespace:MauiMedia.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:model="clr-namespace:NerdNewsNavigator2.Model"
+    xmlns:model="clr-namespace:MauiMedia.Model"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:viewmodel="clr-namespace:NerdNewsNavigator2.Shared"
+    xmlns:viewmodel="clr-namespace:MauiMedia.Shared"
     x:Name="showControl"
     x:DataType="viewmodel:SharedViewModel"
     BackgroundColor="#34AAD2"

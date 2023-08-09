@@ -3,12 +3,90 @@
     x:Class="MauiMedia.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MauiMedia"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:local="clr-namespace:MauiMedia.View"
+    Title="MauiMedia"
+    FlyoutBackgroundColor="LightGray"
+    FlyoutHeaderBehavior="CollapseOnScroll"
+    FlyoutWidth="200"
+    Shell.BackgroundColor="#34AAD2"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarBackgroundColor="#FFFFFF"
+    Shell.TabBarIsVisible="{OnPlatform MacCatalyst=true,
+                                       Android=true,
+                                       iOS=true,
+                                       WinUI=false}"
+    Shell.TabBarTitleColor="#205493"
+    Shell.TabBarUnselectedColor="#212121">
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+            <Grid
+                Margin="5"
+                ColumnDefinitions="50,*"
+                RowDefinitions="50">
+                <Image
+                    BackgroundColor="LightGray"
+                    IsVisible="{OnPlatform Default=True,
+                                           MacCatalyst=false}"
+                    MinimumHeightRequest="50"
+                    MinimumWidthRequest="50"
+                    Source="{Binding Icon}" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontAutoScalingEnabled="True"
+                    FontSize="20"
+                    MinimumHeightRequest="48"
+                    Text="{Binding Title}"
+                    TextColor="Black" />
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <TabBar IsEnabled="{OnPlatform WinUI=false, MacCatalyst=false, iOS=False, Default=true}" IsVisible="{OnPlatform WinUI=false, MacCatalyst=false, Default=true, iOS=False}">
+
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:PodcastPage}"
+            Icon="house.png" />
+        <!--<ShellContent
+            Title="Recent"
+            ContentTemplate="{DataTemplate local:MostRecentShowsPage}"
+            Icon="history.png" />-->
+        <!--<ShellContent
+            Title="Downloads"
+            ContentTemplate="{DataTemplate local:DownloadedShowPage}"
+            Icon="download.png" />-->
+        <!--<ShellContent
+            Title="Live"
+            ContentTemplate="{DataTemplate local:LivePage}"
+            Icon="live_broadcasting.png" />-->
+        <!--<ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate local:SettingsPage}"
+            Icon="settings.png" />-->
+    </TabBar>
+
+    <!--<ShellContent ContentTemplate="{DataTemplate local:PodcastPage}" />-->
+    <!--<MenuItem
+        Clicked="GotoFirstPage"
+        IconImageSource="house.png"
+        Text="Home" />-->
+    <!--<MenuItem
+        Clicked="GotoMostRecentShowPage"
+        IconImageSource="history.png"
+        Text="Recent" />-->
+    <!--<MenuItem
+        Clicked="GotoDownloadedPage"
+        IconImageSource="download.png"
+        Text="Downloads" />-->
+    <!--<MenuItem
+        Clicked="GotoLivePage"
+        IconImageSource="live_broadcasting.png"
+        Text="Live" />
+    <MenuItem
+        Clicked="GotoAddPage"
+        IconImageSource="settings.png"
+        Text="Settings" />-->
 
 </Shell>

@@ -3,6 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using CommunityToolkit.Maui;
+using MauiMedia.Shared;
+using MauiMedia.View;
+using MauiMedia.ViewModel;
+using MetroLog;
 using MetroLog.Targets;
 using Woka;
 
@@ -27,7 +31,7 @@ public static class MauiProgram
         ;
 #endif
         #region Logging
-        //var config = new LoggingConfiguration();
+        var config = new LoggingConfiguration();
 
 #if RELEASE
         config.AddTarget(
@@ -38,24 +42,24 @@ public static class MauiProgram
                 "MetroLogs"), retainDays: 2));
 #else
         // Will write logs to the Debug output
-        //config.AddTarget(
-        //    LogLevel.Trace,
-        //    LogLevel.Fatal,
+        config.AddTarget(
+            LogLevel.Trace,
+            LogLevel.Fatal,
             new TraceTarget());
 #endif
 
         // will write logs to the console output (Logcat for android)
-        //config.AddTarget(
-        //    LogLevel.Info,
-        //    LogLevel.Fatal,
-        //    new ConsoleTarget());
+        config.AddTarget(
+            LogLevel.Info,
+            LogLevel.Fatal,
+            new ConsoleTarget());
 
-        //config.AddTarget(
-        //    LogLevel.Info,
-        //    LogLevel.Fatal,
-        //    new MemoryTarget(2048));
+        config.AddTarget(
+            LogLevel.Info,
+            LogLevel.Fatal,
+            new MemoryTarget(2048));
 
-        //LoggerFactory.Initialize(config);
+        LoggerFactory.Initialize(config);
         #endregion
 
         #region Services
@@ -92,14 +96,14 @@ public static class MauiProgram
 
         //builder.Services.AddSingleton<CurrentDownloads>();
         //builder.Services.AddSingleton<CurrentNavigation>();
-        //builder.Services.AddSingleton<VideoOnNavigated>();
+        builder.Services.AddSingleton<VideoOnNavigated>();
         //builder.Services.AddSingleton<NotificationService>();
 
         //builder.Services.AddSingleton<PositionDataBase>();
         //builder.Services.AddSingleton<AndroidPermissions>();
         //builder.Services.AddSingleton(LogOperatorRetriever.Instance);
         builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
-        //builder.Services.AddSingleton<IMessenger, WeakReferenceMessenger>();
+        builder.Services.AddSingleton<IMessenger, WeakReferenceMessenger>();
         return builder.Build();
         #endregion
     }

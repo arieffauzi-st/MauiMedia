@@ -4,6 +4,7 @@
 
 using CommunityToolkit.Maui.Core.Primitives;
 using MauiMedia.Model;
+using MauiMedia.Primitives;
 using MauiMedia.ViewModel;
 using MetroLog;
 
@@ -46,7 +47,8 @@ public partial class VideoPlayerPage : ContentPage
         _logger.Info($"Navigated: {e.CurrentShow.Url}");
         App.OnVideoNavigated.Navigation -= Now;
         ShowItem = e.CurrentShow;
-        mediaElement.Source = new Uri(e.CurrentShow.Url);
+        string hlsVideoUrl = "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8";
+        mediaElement.Source = new Uri(hlsVideoUrl);
         await Seek(ShowItem);
     }
 
@@ -61,25 +63,25 @@ public partial class VideoPlayerPage : ContentPage
         Pos.SavedPosition = TimeSpan.Zero;
         Pos.Title = show.Title;
         _logger.Info("Title: {Title}", show.Title);
-        var positionList = await App.PositionData.GetAllPositions();
-        var result = positionList.ToList().Find(x => x.Title == show.Title);
-        if (result is not null)
-        {
-            Pos = result;
-            Pos.Title = result.Title;
-            Pos.SavedPosition = result.SavedPosition;
-            await MainThread.InvokeOnMainThreadAsync(() =>
-            {
-                mediaElement.Pause();
-                _logger.Info("Retrieved Saved position from database is: {Title} - {TotalSeconds}", Pos.Title, Pos.SavedPosition);
-                mediaElement.SeekTo(Pos.SavedPosition);
-                mediaElement.Play();
-            });
-        }
-        else
-        {
-            _logger.Info("Could not find saved position");
-        }
+        //var positionList = await App.PositionData.GetAllPositions();
+        //var result = positionList.ToList().Find(x => x.Title == show.Title);
+        //if (result is not null)
+        //{
+        //    Pos = result;
+        //    Pos.Title = result.Title;
+        //    Pos.SavedPosition = result.SavedPosition;
+        //    await MainThread.InvokeOnMainThreadAsync(() =>
+        //    {
+        //        mediaElement.Pause();
+        //        _logger.Info("Retrieved Saved position from database is: {Title} - {TotalSeconds}", Pos.Title, Pos.SavedPosition);
+        //        mediaElement.SeekTo(Pos.SavedPosition);
+        //        mediaElement.Play();
+        //    });
+        //}
+        //else
+        //{
+        //    _logger.Info("Could not find saved position");
+        //}
 
         mediaElement.ShouldKeepScreenOn = true;
         mediaElement.StateChanged += MediaStopped;
@@ -104,7 +106,7 @@ public partial class VideoPlayerPage : ContentPage
                 {
                     Pos.SavedPosition = mediaElement.Position;
                     _logger.Info("Paused: {Position}", mediaElement.Position);
-                    await App.PositionData.UpdatePosition(Pos);
+                    //await App.PositionData.UpdatePosition(Pos);
                 }
                 break;
         }
