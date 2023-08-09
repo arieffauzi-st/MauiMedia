@@ -47,7 +47,7 @@
 
         <ShellContent
             Title="Home"
-            ContentTemplate="{DataTemplate local:PodcastPage}"
+            ContentTemplate="{DataTemplate local:VideoPlayerPage}"
             Icon="house.png" />
         <!--<ShellContent
             Title="Recent"
@@ -67,11 +67,11 @@
             Icon="settings.png" />-->
     </TabBar>
 
-    <!--<ShellContent ContentTemplate="{DataTemplate local:PodcastPage}" />-->
-    <!--<MenuItem
+    <!--<ShellContent ContentTemplate="{DataTemplate local:VideoPlayerPage}" />-->
+    <MenuItem
         Clicked="GotoFirstPage"
         IconImageSource="house.png"
-        Text="Home" />-->
+        Text="Home" />
     <!--<MenuItem
         Clicked="GotoMostRecentShowPage"
         IconImageSource="history.png"

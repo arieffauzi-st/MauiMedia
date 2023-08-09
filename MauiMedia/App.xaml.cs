@@ -37,67 +37,68 @@ public partial class App : Application /*,IRecipient<NotificationItemMessage>*/
     /// Initializes a new instance of the <see cref="App"/> class.
     /// </summary>
     /// <param name="positionDataBase"></param>
-//    public App(PositionDataBase positionDataBase, IMessenger messenger)
-//    {
-//        InitializeComponent();
+    /// 
+    public App (IMessenger messenger)
+    {
+        InitializeComponent();
 
-//        MainPage = new AppShell();
-//        _messenger = messenger;
-//        // Database Dependancy Injection START
-//        PositionData = positionDataBase;
-//        // Database Dependancy Injection END
-//        LogController.InitializeNavigation(
-//           page => MainPage!.Navigation.PushModalAsync(page),
-//           () => MainPage!.Navigation.PopModalAsync());
-//#if ANDROID || IOS
-//        // Local Notification tap event listener
-//        WeakReferenceMessenger.Default.Register<NotificationItemMessage>(this);
-//        LocalNotificationCenter.Current.NotificationActionTapped += OnNotificationActionTapped;
-//        LocalNotificationCenter.Current.RegisterCategoryList(new HashSet<NotificationCategory>(new List<NotificationCategory>()
-//            {
-//                new NotificationCategory(NotificationCategoryType.Status)
-//                {
-//                    ActionList = new HashSet<NotificationAction>( new List<NotificationAction>()
-//                    {
-//                        new NotificationAction(103)
-//                        {
-//                            Title = "Close Notification",
-//                        }
-//                    })
-//                }
-//            }));
-//#endif
+        MainPage = new AppShell();
+        _messenger = messenger;
+        // Database Dependancy Injection START
+        //PositionData = positionDataBase;
+        // Database Dependancy Injection END
+        LogController.InitializeNavigation(
+           page => MainPage!.Navigation.PushModalAsync(page),
+           () => MainPage!.Navigation.PopModalAsync());
+#if ANDROID || IOS
+            // Local Notification tap event listener
+            //WeakReferenceMessenger.Default.Register<NotificationItemMessage>(this);
+            //LocalNotificationCenter.Current.NotificationActionTapped += OnNotificationActionTapped;
+            //LocalNotificationCenter.Current.RegisterCategoryList(new HashSet<NotificationCategory>(new List<NotificationCategory>()
+                //{
+                //    new NotificationCategory(NotificationCategoryType.Status)
+                //    {
+                //        ActionList = new HashSet<NotificationAction>( new List<NotificationAction>()
+                //        {
+                //            new NotificationAction(103)
+                //            {
+                //                Title = "Close Notification",
+                //            }
+                //        })
+                //    }
+                //}));
+#endif
 
-//        //ThreadPool.QueueUserWorkItem(state =>
-//        //{
-//        //    StartAutoDownloadService();
-//        //});
-//    }
-    //protected override Window CreateWindow(IActivationState activationState)
-    //{
-    //    var window = base.CreateWindow(activationState);
-    //    window.Destroying += (s, e) =>
+        //ThreadPool.QueueUserWorkItem(state =>
+        //{
+        //    StartAutoDownloadService();
+        //});
+    }
+    protected override Window CreateWindow(IActivationState activationState)
+    {
+        var window = base.CreateWindow(activationState);
+        window.Destroying += (s, e) =>
+        {
+            //Downloads.CancelAll();
+            Thread.Sleep(50);
+            _logger.Info("Safe shutdown completed");
+        };
+        return window;
+    }
+
+    //#if ANDROID || IOS
+
+    //    private void OnNotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
     //    {
-    //        Downloads.CancelAll();
-    //        Thread.Sleep(50);
-    //        _logger.Info("Safe shutdown completed");
-    //    };
-    //    return window;
-    //}
+    //        switch (e.ActionId)
+    //        {
+    //            case 103:
+    //                e.Request.Cancel();
+    //                break;
+    //        }
+    //    }
 
-//#if ANDROID || IOS
-
-//    private void OnNotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
-//    {
-//        switch (e.ActionId)
-//        {
-//            case 103:
-//                e.Request.Cancel();
-//                break;
-//        }
-//    }
-
-//#endif
+    //#endif
 
     //private void StartAutoDownloadService()
     //{
@@ -108,6 +109,7 @@ public partial class App : Application /*,IRecipient<NotificationItemMessage>*/
     //        _messenger.Send(new MessageData(true));
     //    }
     //}
+
 
     #region Messaging Service
 

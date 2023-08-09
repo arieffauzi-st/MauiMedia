@@ -14,20 +14,18 @@ public partial class AppShell : Shell
     public AppShell()
     {
         InitializeComponent();
-        //MainPage = new VideoPlayerPage();
+        
         //Routing.RegisterRoute(nameof(PodcastPage), typeof(PodcastPage));
         //Routing.RegisterRoute(nameof(ShowPage), typeof(ShowPage));
-        //Routing.RegisterRoute(nameof(VideoPlayerPage), typeof(VideoPlayerPage));
+        Routing.RegisterRoute(nameof(VideoPlayerPage), typeof(VideoPlayerPage));
         //Routing.RegisterRoute(nameof(LivePage), typeof(LivePage));
         //Routing.RegisterRoute(nameof(EditPage), typeof(EditPage));
         //Routing.RegisterRoute(nameof(ResetAllSettingsPage), typeof(ResetAllSettingsPage));
         //Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         //Routing.RegisterRoute(nameof(MostRecentShowsPage), typeof(MostRecentShowsPage));
         //Routing.RegisterRoute(nameof(DownloadedShowPage), typeof(DownloadedShowPage));
+        //GoToVideoPlayerPage();
 
-        // Register the VideoPlayerPage route
-        Routing.RegisterRoute(nameof(VideoPlayerPage), typeof(VideoPlayerPage));
-        GotoFirstPage();
     }
 
     #region Navigation
@@ -36,16 +34,15 @@ public partial class AppShell : Shell
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    //private async void GotoFirstPage(object sender, EventArgs e)
-    //{
-    //    FlyoutIsPresented = false;
-    //    await Shell.Current.GoToAsync($"{nameof(VideoPlayerPage)}");
-    //}
-    private async void GotoFirstPage()
+    private async void GotoFirstPage(object sender, EventArgs e)
     {
         FlyoutIsPresented = false;
-        await Shell.Current.GoToAsync($"//{nameof(VideoPlayerPage)}");
+        await Shell.Current.GoToAsync($"{nameof(VideoPlayerPage)}");
     }
+    //private async void GoToVideoPlayerPage()
+    //{
+    //    await Shell.Current.GoToAsync($"{nameof(VideoPlayerPage)}");
+    //}
 
     /// <summary>
     /// Method navigates user to Main Page.
